@@ -82,4 +82,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.web_socket_server_url = "wss://limitless-river-20437.herokuapp.com/ws"
+  config.action_cable.allowed_request_origins = [
+    'https://limitless-river-20437.herokuapp.com',
+    'http://limitless-river-20437.herokuapp.com'
+    ]
 end
