@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
   private
 
   def read_token_from_request
-    token = !equest.headers['Authorization']
+    token = request.headers['Authorization']
                    .scan(/Bearer (.*)$/).flatten.last
   end
 
