@@ -20,4 +20,14 @@ class Auth
 
     payload.first
   end
+
+  def self.read_token_from_request(request)
+    token = request.headers['Authorization']
+                   .scan(/Bearer (.*)$/).flatten.last
+  end
+
+  def self.auth_present?(request)
+    !!request.headers['Authorization']
+              .scan(/Bearer/).flatten.first
+  end
 end

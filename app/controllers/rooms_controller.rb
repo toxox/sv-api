@@ -3,19 +3,20 @@ class RoomsController < ApplicationController
   before_action :authenticate
 
   def show
-    messages = Message.includes(:user).where(room_id: @room.id).limit(30)
+    messages = Message.includes(:user).where(room_id: @room.id).last(10)
     render json: messages.to_json(include: :user)
   end
 
   def post_message
 
-    Message.create(
+    message = Message.includes(:user).create(
       user_id: @current_user.id,
       room_id: @room.id,
       body: params[:body]
     )
 
-    render json: @room
+    ActionCable.server.broadcast "room_#{@room.id}", message.to_json(include: :user)
+    head :ok
   end
 
   private
