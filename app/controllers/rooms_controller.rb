@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
       body: params[:body]
     )
 
-    ActionCable.server.broadcast "room_#{@room.id}", message.to_json(include: :user)
+    ActionCable.server.broadcast "room_#{@room.video_id}", message.to_json(include: :user)
     head :ok
   end
 
