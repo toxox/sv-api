@@ -87,6 +87,7 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     'https://limitless-river-20437.herokuapp.com',
     'http://limitless-river-20437.herokuapp.com',
-    'http://localhost:3030'
+    'http://localhost:3030',
+    'https://sv.krasava.me'
   ]
 end
